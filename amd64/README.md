@@ -32,6 +32,30 @@ docker run -it -e HOST="root@localhost" -e PORT=2222 -p8080:8080 -e FORWARD="-L:
 
 5. It does a test connection first then the tunnel is running.
 
+### Automated
+1. Create `known_hosts` and the ssh key (`id_rsa`, `id_rsa.pub`), i.e. the only files in `/root/.ssh` directory. Therefore they can be placed in a single directory.
+
+Generating the ssh key:
+```bash
+ssh-keygen -t rsa -b 4096 -N '' -f id_rsa
+```
+
+`known_hosts` can be populated from output of `ssh-keyscan -H <host>` or set `-e TRUST="yes"`.
+
+
+2. start the container.
+
+```bash
+docker run -v path-to-created-config:/root/.ssh/ -e HOST="user@your.server" -e FORWARD="your forwards goes here" valdisxp1/autossh 
+```
+
+or
+
+```bash
+docker run -v path-to-known_hosts:/root/.ssh/known_hosts -v path-to-id_rsa:/root/.ssh/id_rsa -v path-to-id_rsa.pub:/root/.ssh/id_rsa.pub -e HOST="user@your.server" -e FORWARD="your forwards goes here" valdisxp1/autossh 
+```
+
+
 ## Environment variables
 
 * `HOST` user@hostname of the target ssh server
