@@ -2,7 +2,7 @@
 
 if ! ls ~/.ssh/id_rsa 1> /dev/null 2>&1
 then
-	ssh-keygen -t rsa -b 4096 -N '' -C "generated key" -f ~/.ssh/id_rsa
+	ssh-keygen -t rsa -b 4096 -N '' -C "generated on $HOST at `date`" -f ~/.ssh/id_rsa
 	GENERATED=true
 fi
 echo "-------- PUBLIC SSH KEY --------"
