@@ -1,8 +1,6 @@
-FROM alpine:latest
+FROM alpine:3.5
 MAINTAINER Valdis Adamsons <valdisxp1@gmail.com>
 
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
-RUN apk update
 RUN apk add --no-cache openssh autossh
 
 RUN >/etc/motd
