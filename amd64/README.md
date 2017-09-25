@@ -62,6 +62,7 @@ docker run -v path-to-known_hosts:/root/.ssh/known_hosts -v path-to-id_rsa:/root
 * `PORT` ssh port to connect; default is 22
 * `FORWARD` ssh port forwards seperated by a space. See `man ssh` or [online](https://linux.die.net/man/1/ssh) for full reference.
 * `TRUST` set to `yes` or `all` to skip "Are you sure you want to continue connecting" (implictly trusting the server key).
+* `VERBOSE` set to `true` to enable ssh verbose output.
 
 ## Gotchas
 * To be able access local forwards use `-L:local_port:remote_host:remote_port` instead of `-Llocal_port:remote_host:remote_port`. Leading `:` allows external connections.

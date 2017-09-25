@@ -1,8 +1,8 @@
-# valdisxp1/rpi-autossh
+# valdisxp1/autossh
 
-[![nodesource/node](http://dockeri.co/image/valdisxp1/rpi-autossh)](https://registry.hub.docker.com/u/valdisxp1/rpi-autossh/)
+[![nodesource/node](http://dockeri.co/image/valdisxp1/autossh)](https://registry.hub.docker.com/u/valdisxp1/autossh/)
 
-Docker container for creating tunnels with autossh (raspberry pi version).
+Docker container for creating tunnels with autossh.
 
 * Both interactive and automated initialization available
 * Generates its own SSH key
@@ -13,13 +13,13 @@ Docker container for creating tunnels with autossh (raspberry pi version).
 ### Interactive
 
 ```bash
-docker run -it -e HOST="user@your.server" -e FORWARD="your forwards goes here" valdisxp1/rpi-autossh 
+docker run -it -e HOST="user@your.server" -e FORWARD="your forwards goes here" valdisxp1/autossh 
 ```
 Remember to forward the ports
 
 example:
 ```bash
-docker run -it -e HOST="root@localhost" -e PORT=2222 -p8080:8080 -e FORWARD="-L:8080:localhost:80 -D5050" valdisxp1/rpi-autossh
+docker run -it -e HOST="root@localhost" -e PORT=2222 -p8080:8080 -e FORWARD="-L:8080:localhost:80 -D5050" valdisxp1/autossh
 ```
 
 1. Start the container with the command.
@@ -46,13 +46,13 @@ ssh-keygen -t rsa -b 4096 -N '' -f id_rsa
 2. start the container.
 
 ```bash
-docker run -v path-to-created-config:/root/.ssh/ -e HOST="user@your.server" -e FORWARD="your forwards goes here" valdisxp1/rpi-autossh 
+docker run -v path-to-created-config:/root/.ssh/ -e HOST="user@your.server" -e FORWARD="your forwards goes here" valdisxp1/autossh 
 ```
 
 or
 
 ```bash
-docker run -v path-to-known_hosts:/root/.ssh/known_hosts -v path-to-id_rsa:/root/.ssh/id_rsa -v path-to-id_rsa.pub:/root/.ssh/id_rsa.pub -e HOST="user@your.server" -e FORWARD="your forwards goes here" valdisxp1/rpi-autossh 
+docker run -v path-to-known_hosts:/root/.ssh/known_hosts -v path-to-id_rsa:/root/.ssh/id_rsa -v path-to-id_rsa.pub:/root/.ssh/id_rsa.pub -e HOST="user@your.server" -e FORWARD="your forwards goes here" valdisxp1/autossh 
 ```
 
 
@@ -62,6 +62,7 @@ docker run -v path-to-known_hosts:/root/.ssh/known_hosts -v path-to-id_rsa:/root
 * `PORT` ssh port to connect; default is 22
 * `FORWARD` ssh port forwards seperated by a space. See `man ssh` or [online](https://linux.die.net/man/1/ssh) for full reference.
 * `TRUST` set to `yes` or `all` to skip "Are you sure you want to continue connecting" (implictly trusting the server key).
+* `VERBOSE` set to `true` to enable ssh verbose output.
 
 ## Gotchas
 * To be able access local forwards use `-L:local_port:remote_host:remote_port` instead of `-Llocal_port:remote_host:remote_port`. Leading `:` allows external connections.
