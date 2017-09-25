@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [[ "$VERBOSE" = "YES" ]] || [[ "$VERBOSE" = "yes" ]]
+if [[ "$VERBOSE" = "TRUE" ]] || [[ "$VERBOSE" = "true" ]]
 then
 	VERBOSE_FLAG="-vv"
 fi
